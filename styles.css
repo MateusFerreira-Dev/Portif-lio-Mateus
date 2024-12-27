@@ -1,0 +1,346 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;1,100;1,200;1,300;1,400&display=swap');
+
+:root {
+  --background: #000000;
+  --card: #0A0A0A;
+  --titulo: #e4e4e4;
+  --texto: #C8F8DB;
+  --efeitos: #672abf;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+}
+
+body {
+  background-color: var(--background);
+  scroll-behavior: smooth;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  margin: 0;
+}
+
+p {
+  color: #fff;
+}
+
+.hidden {
+  display: none;
+}
+
+.visible {
+  display: flex;
+}
+
+.face {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 2rem;
+  perspective: 1000px;
+  position: relative;
+}
+
+.card, .card-back {
+  width: 25rem;
+  height: 500px;
+  background: var(--card);
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center; /* Centraliza verticalmente */
+  text-align: center; /* Centraliza horizontalmente */
+  border-radius: 8px;
+  box-shadow: 0 8px 100px 0;
+  overflow: hidden;
+  z-index: 1;
+  transition: all 0.4s ease;
+  position: absolute;
+}
+
+.card-back {
+  transform: rotateY(-180deg);
+  backface-visibility: hidden;
+}
+
+.face.active .card {
+  transform: rotateY(180deg);
+  z-index: 0;
+}
+
+.face.active .card-back {
+  transform: rotateY(0);
+  z-index: 1;
+}
+
+.card::before, .card::after, .card-back::before, .card-back::after {
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 3px;
+  background: linear-gradient(to right, transparent, rgb(134, 91, 184));
+}
+
+.card::before, .card-back::before {
+  top: 0;
+  left: 0;
+  animation: animar1 2s linear infinite;
+}
+
+.card::after, .card-back::after {
+  bottom: 0;
+  right: 0;
+  animation: animar3 2s linear infinite;
+}
+
+@keyframes animar1 {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+@keyframes animar3 {
+  0% {
+    transform: translateX(100%);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
+}
+
+h2::before, .face h3::before {
+  content: '';
+  position: absolute;
+  background-color: var(--efeitos);
+  height: 2px;
+  width: 40px;
+  bottom: 2.4px;
+  transition: all .6s ease;
+}
+
+h2:hover::before, .face h3:hover::before {
+  cursor: pointer;
+  width: 176.5px;
+  transition: all .6s ease;
+}
+
+.skills {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  margin: 40px 0 60px 0;
+}
+
+.skills a, .skills button {
+  background-color: var(--background);
+  color: var(--texto);
+  align-items: center;
+  border-radius: 0.2rem;
+  padding: 0.4em;
+  font-size: 13px;
+  letter-spacing: 1px;
+  transition: background-color 0.3s ease, color 0.3s ease;
+  border: none;
+  cursor: pointer;
+}
+
+.skills a:hover, .skills button:hover {
+  background-color: var(--efeitos);
+  color: #fff;
+}
+
+.image {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 20px 0;
+}
+
+.image img {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  border: 2px solid rgb(149, 114, 252);
+  animation: borderAnimated 5s linear infinite;
+  background-size: cover;
+  background-position: center;
+  object-fit: cover;
+}
+
+@keyframes borderAnimated {
+  0% {
+    border: 1.7px solid #672abf;
+  }
+  25% {
+    border: 1.7px solid rgb(236, 102, 12);
+  }
+  50% {
+    border: 1.7px solid #672abf;
+  }
+  75% {
+    border: 1.7px solid rgb(236, 102, 12);
+  }
+  100% {
+    border: 1.7px solid #672abf;
+  }
+}
+
+.read-btn {
+  width: 12rem;
+  height: 3rem;
+  background-color: var(--efeitos);
+  border: none;
+  font-weight: bold;
+  color: var(--titulo);
+  font-size: 16px;
+  padding: 4px;
+  margin-top: 4px;
+  border-radius: 2px;
+  cursor: pointer;
+  transition: all 0.3s ease-in;
+}
+
+.read-btn:hover {
+  background: transparent;
+  color: #8151c4;
+  transition: all .4s;
+  border: 2px solid;
+}
+
+#btn-voltar {
+  display: none;
+}
+
+.content-back .social-medias {
+  display: flex;
+  justify-content: space-around;
+  margin: auto;
+  margin-top: -90px;
+}
+
+.content-back .social-media {
+  text-decoration: none;
+  transition: transform 0.2s ease-in, color 0.3s ease-in-out;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  margin: 20px;
+  font-size: 24px;
+}
+
+.content-back .social-media:hover {
+  transform: translateY(10px);
+  color: var(--efeitos);
+  transition: transform 0.3s ease, color 0.3s ease;
+}
+
+/* Estilo para destacar o nome */
+.content h3 {
+  font-size: 2rem; /* Aumenta o tamanho da fonte */
+  color: var(--efeitos); /* Muda a cor para destaque */
+  margin: 10px 0; /* Adiciona margem */
+}
+
+/* Estilo para o botão fechar */
+.close-btn {
+  background-color: var(--efeitos);
+  color: var(--titulo);
+  font-size: 16px;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+  margin-top: 20px;
+}
+
+.close-btn:hover {
+  background-color: #8151c4;
+  color: #fff;
+  transform: scale(1.1);
+}
+
+/* Media Queries para diferentes resoluções */
+@media only screen and (max-width: 768px) {
+  .face {
+    gap: 1rem;
+  }
+
+  .card, .card-back {
+    width: 20rem;
+    margin: 0 auto;
+    padding: 15px;
+  }
+
+  .content h3 {
+    text-align: center;
+    margin: 10px 0;
+  }
+
+  .read-btn {
+    width: 10rem;
+    height: 2.5rem;
+    font-size: 14px;
+  }
+
+  .image img {
+    width: 120px;
+    height: 120px;
+  }
+
+  h3 {
+    font-size: 1.2rem;
+  }
+
+  p {
+    font-size: 0.9rem;
+  }
+}
+
+@media only screen and (max-width: 420px) {
+  .face {
+    gap: 0.5rem;
+  }
+
+  .card, .card-back {
+    width: 18rem;
+    margin: 0 auto;
+    padding: 10px;
+  }
+
+  .content h3 {
+    text-align: center;
+    margin: 5px 0;
+  }
+
+  .read-btn {
+    width: 8rem;
+    height: 2rem;
+    font-size: 12px;
+  }
+
+  .image img {
+    width: 100px;
+    height: 100px;
+  }
+
+  h3 {
+    font-size: 1rem;
+  }
+
+  p {
+    font-size: 0.8rem;
+  }
+}
